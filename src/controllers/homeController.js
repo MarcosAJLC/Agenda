@@ -1,7 +1,5 @@
-exports.paginaInicial = (req, res, next) => {
-    res.render('index');
-  };
-  
-  exports.trataPost = (req, res, next) => {
-    res.send('Ei, sou sua nova rota de POST.');
-  };
+const Contato = require('../models/contatomodel')
+exports.index = async (req, res, next) => {
+  const contatos = await Contato.BuscaC()
+  res.render('index', { contatos })
+};

@@ -7,8 +7,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-    <title>Agenda</title>
+    <title>Login</title>
   </head>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="/">Agenda</a>
@@ -20,9 +19,6 @@
       <ul class="navbar-nav ml-auto">
         <ul class="navbar-nav ml-auto">
           <% if (user) { %>
-            <li class="nav-item">
-              <a class="nav-link" href="/contato/index">Cadastrar Contatos</a>
-            </li>
               <li class="nav-item">
                 <a class="nav-link" href="/login/logout">Sair</a>
               </li>
@@ -42,8 +38,7 @@
       <div class="row">
         <div class="col-lg-2"></div>
         <div class="col-lg-8 my-5">
-          <h1 class="text-center">Agenda</h1>
-          <p class="text-center lead">Contatos</p>
+          <h1 class="text-center">Login</h1>
           <% if (errors.length > 0) { %>
             <div class="row">
               <div class="col my-3">
@@ -66,24 +61,27 @@
                   </div>
                 </div>
                 <% } %>
-          <%  if(contatos.length > 0) { %>
-          <div class="responsive-table">
-            <table class="table my-3">
-              <% contatos.forEach(C => { %>
-                <tr>
-                  <td><%= C.nome %></td>
-                  <td><%= C.sobrenome %></td>
-                  <td><%= C.telefone %></td>
-                  <td><%= C.email %></td>
-                  <td><a href="/contato/index/<%=C._id%>">Editar</a></td>
-                  <td><a class="text-danger" href="/contato/delete/<%= C._id %>">Excluir</a></td>
-                </tr>
-                <% }); %>
-            </table>
+          <div class="row">
+            <div class="col-lg">
+              <form action="/login/login" method="post" class="card-body">
+                <input type="hidden" name="_csrf" value=<%= csrfToken %>>
+                <div class="form-group">
+                  <label>Seu Email</label>
+                  <input type="email" class="form-control" name="email">
+                </div>
+                <div class="form-group">
+                  <label>Sua Senha</label>
+                  <input type="password" class="form-control" name="password">
+                </div>
+                <div>
+
+                  <button type="submit" class="btn btn-dark float-right">entrar</button>
+                  <small class="text-muted"><a href="/cadastro/index">não tem conta?</a></small>
+                </div>
+                </div>
+              </form>
+            </div>
           </div>
-          <% } else {%>
-            <p class="text-center lead">Não existem contatos cadastrados</p>
-          <%}%>
         </div>
         <div class="col-lg-2"></div>
         
