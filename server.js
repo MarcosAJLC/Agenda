@@ -43,7 +43,7 @@ app.use(checkCSRF404);
 app.use(csrfMiddleware)
 app.use(routes);
 app.on('pronto', () => {
-  app.listen(3000, () => {
-    console.log(`Servidor rodando na porta`);
+  app.listen(port, () => {
+    console.log(`Servidor rodando na porta ${port}`);
 });
 })
