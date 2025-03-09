@@ -50,6 +50,11 @@ app.use(csrfMiddleware);
 // Definindo as rotas
 app.use(routes);
 
+// Rota principal
+app.get('/', (req, res) => {
+  res.render('index'); // Isso renderiza a view 'index.ejs' na pasta 'src/views'
+});
+
 // Quando o MongoDB estiver pronto, inicie o servidor
 app.on('pronto', () => {
   const port = process.env.PORT || 3000;
