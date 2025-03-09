@@ -52,7 +52,7 @@ app.use(routes);
 
 // Rota principal
 app.get('/', (req, res) => {
-  res.render('index'); // Isso renderiza a view 'index.ejs' na pasta 'src/views'
+  res.render('index'); // Renderiza a view 'index.ejs' na pasta 'src/views'
 });
 
 // Quando o MongoDB estiver pronto, inicie o servidor
