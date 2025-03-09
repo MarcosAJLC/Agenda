@@ -1,8 +1,8 @@
-require('dotenv').config
+require('dotenv').config()
 const express = require('express');
 const app = express();
 const moongoose = require('mongoose')
-const connetionString = 'mongodb+srv://MarcosAlexandre:emigam2008@cluster0.9ww0n.mongodb.net/Agenda?retryWrites=true&w=majority&appName=Cluster0'
+const connetionString = process.env.MONGODB_URI;
 moongoose.connect(connetionString)
   .then(() => {
     app.emit('pronto')
