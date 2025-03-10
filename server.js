@@ -55,10 +55,5 @@ app.get('/', (req, res) => {
   res.render('index'); // Renderiza a view 'index.ejs' na pasta 'src/views'
 });
 
-// Quando o MongoDB estiver pronto, inicie o servidor
-app.on('pronto', () => {
-  const port = process.env.PORT || 3000; // Use a variável PORT fornecida pelo Vercel
-  app.listen(port, () => {
-    console.log(`Servidor rodando na porta ${port}`);
-  });
-});
+// Exporte o app para que o Vercel possa usá-lo como uma função
+module.exports = app;
