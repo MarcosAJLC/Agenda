@@ -54,6 +54,13 @@ app.use(routes);
 app.get('/', (req, res) => {
   res.render('index'); // Renderiza a view 'index.ejs' na pasta 'src/views'
 });
+// Adicionar somente para testes locais. Não é necessário para o Vercel.
+if (require.main === module) {
+  const port = process.env.PORT || 3000;
+  app.listen(port, () => {
+    console.log(`Servidor rodando localmente na porta ${port}`);
+  });
+}
 
 // Exporte o app para que o Vercel possa usá-lo como uma função
 module.exports = app;
