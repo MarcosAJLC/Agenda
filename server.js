@@ -2,15 +2,16 @@ require('dotenv').config();  // Carregar variáveis de ambiente
 
 const express = require('express');
 const mongoose = require('mongoose');
-const app = express();
 const path = require('path');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const flash = require('connect-flash');
 const helmet = require('helmet');
-const routes = require('./routes');
 const csfr = require('csurf');
+const routes = require('./src/routes');
 const { middlewareGlobal, checkCSRF404, csrfMiddleware } = require('./src/middleware/middleware');
+
+const app = express();
 
 // Conectar ao MongoDB
 const connectionString = process.env.MONGODB_URI;
@@ -18,7 +19,6 @@ const connectionString = process.env.MONGODB_URI;
 mongoose.connect(connectionString)
   .then(() => {
     console.log("Conectado ao MongoDB");
-    app.emit('pronto');
   })
   .catch((err) => {
     console.error("Erro de conexão ao MongoDB:", err);
@@ -50,15 +50,5 @@ app.use(csrfMiddleware);
 // Definindo as rotas
 app.use(routes);
 
-// Rota principal
-app.get('/', (req, res) => {
-  res.render('index'); // Renderiza a view 'index.ejs' na pasta 'src/views'
-});
-
-// Quando o MongoDB estiver pronto, inicie o servidor
-app.on('pronto', () => {
-  const port = process.env.PORT || 3000;
-  app.listen(port, () => {
-    console.log(`Servidor rodando na porta ${port}`);
-  });
-});
+// **Em vez de app.listen(), exportamos uma função**
+module.exports = app;
