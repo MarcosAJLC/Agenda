@@ -8,7 +8,7 @@ const MongoStore = require('connect-mongo');
 const flash = require('connect-flash');
 const helmet = require('helmet');
 const csfr = require('csurf');
-const routes = require('./src/routes');
+const routes = require('./routes');
 const { middlewareGlobal, checkCSRF404, csrfMiddleware } = require('./src/middleware/middleware');
 
 const app = express();
